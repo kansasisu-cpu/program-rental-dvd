@@ -1,4 +1,5 @@
 from prettytable import PrettyTable
+import re
 import inquirer
 
 from tema import tema_manage_penyewa
@@ -72,6 +73,9 @@ def ubah_penyewa():
         penyewa = data_penyewa[id_penyewa]
         nama_baru = input("\nNama baru (Enter jika tidak ingin diubah): ").strip()
         telepon_baru = input("Nomor telepon baru (Enter jika tidak ingin diubah): ").strip()
+        telepon_baru = re.sub(r"[\s-]", "", telepon_baru)
+        if telepon_baru != "" and  not re.fullmatch(r"(08[1-9][0-9]{8,10})", telepon_baru):
+            raise ValueError("Nomor telepon tidak valid! Contoh: 081234567890")
         alamat_baru = input("Alamat baru (Enter jika tidak ingin diubah): ").strip()
 
     except KeyError:

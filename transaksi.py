@@ -1,4 +1,5 @@
 from prettytable import PrettyTable
+import re
 import inquirer
 
 from tema import tema_manage_transaksi
@@ -190,6 +191,9 @@ def sewa_dvd(username):
         durasi = input_angka("Durasi sewa (hari): ", 1)
         nama = input_teks("Nama lengkap: ")
         telepon = input_teks("Nomor telepon: ")
+        telepon = re.sub(r"[\s-]", "", telepon)
+        if not re.fullmatch(r"08[1-9][0-9]{8,10}", telepon):
+            raise ValueError("Nomor telepon tidak valid! Contoh: 081234567890")
         alamat = input_teks("Alamat: ")
 
     except KeyError:

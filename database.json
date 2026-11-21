@@ -26,7 +26,7 @@
             "genre": "Thriller",
             "tahun": 2025,
             "harga": 8000,
-            "stok": 6
+            "stok": 1
         },
         "X005": {
             "judul": "The Shadow Strays",
@@ -61,7 +61,7 @@
             "genre": "Horror",
             "tahun": 2013,
             "harga": 8000,
-            "stok": 10
+            "stok": 8
         },
         "X010": {
             "judul": "Hereditary",
@@ -79,6 +79,22 @@
         "riski": {
             "password": "12",
             "peran": "pengguna"
+        },
+        "ridho": {
+            "password": "234",
+            "peran": "pengguna"
+        },
+        "sartika": {
+            "password": "4567",
+            "peran": "pengguna"
+        },
+        "fatihah": {
+            "password": "5678",
+            "peran": "pengguna"
+        },
+        "muhammad": {
+            "password": "789",
+            "peran": "pengguna"
         }
     },
     "data_penyewa": {
@@ -87,6 +103,18 @@
             "telepon": "088238293",
             "alamat": "jalan",
             "username": "riski"
+        },
+        "Z002": {
+            "nama": "ridho",
+            "telepon": "98076543532",
+            "alamat": "\"C:\\Users\\MSI THIN 15\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\" \"c:/Users/MSI THIN 15/Downloads/projek akhir apd smt 1 matkul/program-rental-dvd/main.py\"",
+            "username": "ridho"
+        },
+        "Z003": {
+            "nama": "RIDHO",
+            "telepon": "9087654321",
+            "alamat": "\"C:\\Users\\MSI THIN 15\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\" \"c:/Users/MSI THIN 15/Downloads/projek akhir apd smt 1 matkul/program-rental-dvd/main.py\"",
+            "username": "ridho"
         }
     },
     "data_transaksi": {
@@ -98,10 +126,28 @@
             "status": "Dipinjam",
             "jumlah": 1,
             "username": "riski"
+        },
+        "Y002": {
+            "id_penyewa": "Z002",
+            "id_dvd": "X004",
+            "harga": 8000,
+            "durasi": 7,
+            "status": "Dipinjam",
+            "jumlah": 5,
+            "username": "ridho"
+        },
+        "Y003": {
+            "id_penyewa": "Z003",
+            "id_dvd": "X009",
+            "harga": 8000,
+            "durasi": 7,
+            "status": "Dipinjam",
+            "jumlah": 2,
+            "username": "ridho"
         }
     },
     "counter": {
-        "penyewa": 2,
-        "transaksi": 2
+        "penyewa": 4,
+        "transaksi": 4
     }
 }
