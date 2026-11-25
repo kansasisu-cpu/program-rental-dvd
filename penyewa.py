@@ -12,7 +12,7 @@ def menu_data_penyewa():
     while True:
         clear_terminal()
         print("=====================================")
-        print("              MENU Data Penyewa")
+        print("           MENU DATA PENYEWA         ")
         print("=====================================")
         pertanyaan = [inquirer.List("pilihan", 
                                     message="Pilih menu", 
@@ -62,7 +62,7 @@ def manage_penyewa():
     
     while True:
         print("\n==============================")
-        print("       MANAGE DATA PENYEWA")
+        print("      MANAGE DATA PENYEWA     ")
         print("==============================")
         print("DATA PENYEWA 📄")
         tampilkan_penyewa()

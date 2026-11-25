@@ -5,7 +5,7 @@ from tema import tema_awal
 
 
 def clear_terminal():
-    os.system("cls")
+    os.system("cls" if os.name == "nt" else "clear")
 
 def enter(pesan="Tekan Enter untuk kembali..."):
     input("\n" + pesan)

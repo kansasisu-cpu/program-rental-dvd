@@ -1,4 +1,4 @@
-from prettytable import PrettyTable
+from prettytable import PrettyTable, ALL
 import re
 import inquirer
 
@@ -8,13 +8,14 @@ from utils import clear_terminal, enter, input_teks, input_angka, total_harga
 from dvd import tampilkan_koleksi
 from penyewa import buat_id_penyewa
 from storage import simpan_data
+from grafik import grafik_pendapatan
 
 def menu_transaksi():
     clear_terminal()
     while True:
         clear_terminal()
         print("=====================================")
-        print("              MENU Transaksi")
+        print("            MENU TRANSAKSI           ")
         print("=====================================")
         pertanyaan = [inquirer.List("pilihan", 
                                     message="Pilih menu", 
@@ -59,10 +60,7 @@ def tampilkan_transaksi(username=None):
     else:
         print("Belum ada transaksi.")
 
-def lihat_total_pendapatan():
-    clear_terminal()
-    print("TOTAL PENDAPATAN 💰")
-
+def total_pendapatan():
     selesai = 0
     berjalan = 0
 
@@ -74,24 +72,40 @@ def lihat_total_pendapatan():
         else:
             berjalan += nilai
 
-    tabel = PrettyTable()
-    tabel.field_names = ["Keterangan", "Jumlah"]
-    tabel.add_row(["Transaksi selesai (sudah dikembalikan)", f"Rp{selesai}"])
-    tabel.add_row(["Transaksi berjalan (masih dipinjam)", f"Rp{berjalan}"])
-    tabel.add_row(["TOTAL PENDAPATAN", f"Rp{selesai + berjalan}"])
-    tabel.align["Keterangan"] = "l"
-    tabel.align["Jumlah"] = "r"
+    while True:
+        clear_terminal()
+        print("TOTAL PENDAPATAN 💰")
+        tabel = PrettyTable()
+        tabel.field_names = ["Keterangan", "Jumlah"]
 
-    print(f"\nTotal transaksi: {len(data_transaksi)}")
-    print(tabel)
-    print("\nCatatan: pendapatan berjalan bisa bertambah jika durasi peminjaman diperpanjang.\n")
+        tabel.add_row(["Transaksi Berjalan", f"Rp{berjalan}"])
+        tabel.add_row(["Transaksi Selesai", f"Rp{selesai}"], divider=True)
+        tabel.add_row(["TOTAL PENDAPATAN", f"Rp{selesai + berjalan}"])
+        tabel.align["Keterangan"] = "l"
+
+        print(f"\nTotal transaksi: {len(data_transaksi)}")
+        print(tabel)
+
+        print()
+        pertanyaan = [inquirer.List("pilihan",
+                                    message="Tampilkan grafik?",
+                                    choices=[" Ya, tampilkan", " Lewati"])]
+
+        jawaban = inquirer.prompt(pertanyaan, theme=tema_admin())
+
+        if jawaban["pilihan"] == " Ya, tampilkan":
+            grafik_pendapatan()
+
+        elif jawaban["pilihan"] == " Lewati":
+            break
+
     enter("Tekan Enter untuk kembali ke menu admin...")
 
 def manage_transaksi():
     clear_terminal()
     while True:
         print("\n==============================")
-        print("       MANAGE TRANSAKSI")
+        print("        MANAGE TRANSAKSI      ")
         print("==============================")
         pertanyaan = [
             inquirer.List("pilihan", 
@@ -102,7 +116,11 @@ def manage_transaksi():
         
         jawaban = inquirer.prompt(pertanyaan, theme=tema_admin())
         #ntah lah
-        if jawaban["pilihan"] == " Tambah durasi peminjaman DVD":
+        if jawaban["pilihan"] == " Pengembalian DVD":
+            pengembalian_dvd()
+            clear_terminal()
+
+        elif jawaban["pilihan"] == " Tambah durasi peminjaman DVD":
             tambah_durasi()
             clear_terminal()
         
@@ -126,7 +144,7 @@ def pengembalian_dvd(username=None):
         no_transaksi = input_teks("Nomor transaksi: ").upper()
         transaksi = data_transaksi[no_transaksi]
 
-        # pengguna hanya boleh mengembalikan transaksi miliknya sendiri
+        # pengguna hanya bs mengembalikan transaksi miliknya sendiri
         if username is not None and transaksi["username"] != username:
             raise KeyError(no_transaksi)
 

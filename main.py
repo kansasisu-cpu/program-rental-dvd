@@ -14,7 +14,7 @@ def main():
         while True:
             clear_terminal()
             print("======================================")
-            print("        RENTAL DVD 'hellokitty'")
+            print("        RENTAL DVD 'hellokitty'       ")
             print("======================================")
             pertanyaan = [inquirer.List("pilihan", message="Pilih menu", choices=[" Register", " Login", " Keluar"])]
 
