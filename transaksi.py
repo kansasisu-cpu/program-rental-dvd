@@ -2,14 +2,40 @@ from prettytable import PrettyTable
 import re
 import inquirer
 
-from tema import tema_manage_transaksi
+from tema import tema_admin
 from data import koleksi_dvd, data_penyewa, data_transaksi, counter
 from utils import clear_terminal, enter, input_teks, input_angka, total_harga
 from dvd import tampilkan_koleksi
 from penyewa import buat_id_penyewa
 from storage import simpan_data
 
+def menu_transaksi():
+    clear_terminal()
+    while True:
+        clear_terminal()
+        print("=====================================")
+        print("              MENU Transaksi")
+        print("=====================================")
+        pertanyaan = [inquirer.List("pilihan", 
+                                    message="Pilih menu", 
+                                    choices=[" Lihat semua transaksi", " Manage transaksi", " Kembali"])
+                     ]
 
+        jawaban = inquirer.prompt(pertanyaan, theme=tema_admin())
+
+        if jawaban["pilihan"] == " Lihat semua transaksi":
+            clear_terminal()
+            print("SEMUA TRANSAKSI 📝")
+            tampilkan_transaksi()
+            print()
+            enter("Tekan Enter untuk kembali ke menu transaksi...")
+
+        elif jawaban["pilihan"] == " Manage transaksi":
+            manage_transaksi()
+
+        elif jawaban["pilihan"] == " Kembali":
+            break
+        
 def tampilkan_transaksi(username=None):
     tabel = PrettyTable()
     tabel.field_names = ["No", "ID Penyewa", "ID DVD", "Durasi Sewa", "Status", "Jumlah", "Total Harga"]
@@ -70,14 +96,17 @@ def manage_transaksi():
         pertanyaan = [
             inquirer.List("pilihan", 
             message="Pilih menu", 
-            choices=[" Pengembalian DVD", " Tambah durasi peminjaman DVD"]
+            choices=[" Pengembalian DVD", " Tambah durasi peminjaman DVD", " Kembali"]
             )
         ]
         
-        jawaban = inquirer.prompt(pertanyaan, theme=tema_manage_transaksi())
+        jawaban = inquirer.prompt(pertanyaan, theme=tema_admin())
         #ntah lah
         if jawaban["pilihan"] == " Tambah durasi peminjaman DVD":
             tambah_durasi()
+            clear_terminal()
+        
+        elif jawaban["pilihan"] == " Kembali":
             break
         
 def pengembalian_dvd(username=None):
@@ -127,7 +156,7 @@ def tambah_durasi():
     tampilkan_transaksi()
 
     if len(data_transaksi) == 0:
-        enter("Tekan Enter untuk kembali ke menu admin...")
+        enter("Tekan Enter untuk kembali ke menu...")
         return
     
     try:
@@ -155,7 +184,7 @@ def tambah_durasi():
         print("Total durasi: ", transaksi["durasi"], "hari")
 
     finally:
-        enter("Tekan Enter untuk kembali ke menu admin...")
+        enter("Tekan Enter untuk kembali ke menu...")
 
 def buat_id_transaksi():
     nomor = counter["transaksi"]

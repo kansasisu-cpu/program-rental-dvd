@@ -100,20 +100,20 @@
     "data_penyewa": {
         "Z001": {
             "nama": "rsikiu",
-            "telepon": "088238293",
-            "alamat": "jalan",
+            "telepon": "083870465642",
+            "alamat": "Jalan Alam Segar",
             "username": "riski"
         },
         "Z002": {
             "nama": "ridho",
-            "telepon": "98076543532",
-            "alamat": "\"C:\\Users\\MSI THIN 15\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\" \"c:/Users/MSI THIN 15/Downloads/projek akhir apd smt 1 matkul/program-rental-dvd/main.py\"",
+            "telepon": "084166799295",
+            "alamat": "Di jalanan",
             "username": "ridho"
         },
         "Z003": {
             "nama": "RIDHO",
-            "telepon": "9087654321",
-            "alamat": "\"C:\\Users\\MSI THIN 15\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\" \"c:/Users/MSI THIN 15/Downloads/projek akhir apd smt 1 matkul/program-rental-dvd/main.py\"",
+            "telepon": "088765432125",
+            "alamat": "Gg Pramuka 1",
             "username": "ridho"
         }
     },

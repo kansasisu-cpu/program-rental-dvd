@@ -13,36 +13,7 @@ class tema_awal(Default):
         self.Question.mark_color = term.bold_pink
         self.Question.brackets_color = term.bright_black
 
-
 class tema_admin(Default):
-    def __init__(self):
-        super().__init__()
-        self.List.selection_cursor = "➜"
-        self.List.selection_color = term.skyblue
-        self.List.unselected_color = term.normal
-        self.Question.mark_color = term.bold_skyblue
-        self.Question.brackets_color = term.bright_black
-        
-
-class tema_manage_dvd(Default):
-    def __init__(self):
-        super().__init__()
-        self.List.selection_cursor = "➜"
-        self.List.selection_color = term.skyblue
-        self.List.unselected_color = term.normal
-        self.Question.mark_color = term.bold_skyblue
-        self.Question.brackets_color = term.bright_black
-        
-class tema_manage_penyewa(Default):
-    def __init__(self):
-        super().__init__()
-        self.List.selection_cursor = "➜"
-        self.List.selection_color = term.skyblue
-        self.List.unselected_color = term.normal
-        self.Question.mark_color = term.bold_skyblue
-        self.Question.brackets_color = term.bright_black
-
-class tema_manage_transaksi(Default):
     def __init__(self):
         super().__init__()
         self.List.selection_cursor = "➜"

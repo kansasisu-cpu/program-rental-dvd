@@ -2,10 +2,36 @@ from prettytable import PrettyTable
 import re
 import inquirer
 
-from tema import tema_manage_penyewa
+from tema import tema_admin
 from data import data_penyewa, data_transaksi, counter
 from utils import clear_terminal, enter, input_teks, konfirmasi
 from storage import simpan_data
+        
+def menu_data_penyewa():
+    clear_terminal()
+    while True:
+        clear_terminal()
+        print("=====================================")
+        print("              MENU Data Penyewa")
+        print("=====================================")
+        pertanyaan = [inquirer.List("pilihan", 
+                                    message="Pilih menu", 
+                                    choices=[" Lihat data penyewa", " Manage data penyewa", " Kembali"])
+                     ]
+
+        jawaban = inquirer.prompt(pertanyaan, theme=tema_admin())
+
+        if jawaban["pilihan"] == " Lihat data penyewa":
+            clear_terminal()
+            print("DATA PENYEWA 📄")
+            tampilkan_penyewa()
+            enter("Tekan Enter untuk kembali ke menu data penyewa...")
+
+        elif jawaban["pilihan"] == " Manage data penyewa":
+            manage_penyewa()
+
+        elif jawaban["pilihan"] == " Kembali":
+            break
         
 def tampilkan_penyewa():
     if len(data_penyewa) == 0:
@@ -31,7 +57,7 @@ def manage_penyewa():
     if len(data_penyewa) == 0:
         print("DATA PENYEWA 📄")
         print("Belum ada penyewa.")
-        enter("Tekan Enter untuk kembali ke menu admin...")
+        enter("Tekan Enter untuk kembali ke menu data penyewa...")
         return
     
     while True:
@@ -44,19 +70,22 @@ def manage_penyewa():
         pertanyaan = [
             inquirer.List("pilihan", 
             message="Pilih menu", 
-            choices=[" Ubah data penyewa", " Hapus data penyewa"]
+            choices=[" Ubah data penyewa", " Hapus data penyewa", " Kembali"]
             )
         ]
         
-        jawaban = inquirer.prompt(pertanyaan, theme=tema_manage_penyewa())
+        jawaban = inquirer.prompt(pertanyaan, theme=tema_admin())
         
         
         if jawaban["pilihan"]  == " Ubah data penyewa":
             ubah_penyewa()
-            break
+            clear_terminal()
         
         elif jawaban["pilihan"] == " Hapus data penyewa":
             hapus_penyewa()
+            clear_terminal()
+            
+        elif jawaban["pilihan"] == " Kembali":
             break
 
 def ubah_penyewa():
@@ -98,7 +127,7 @@ def ubah_penyewa():
         print("\nData penyewa berhasil diperbarui!")
 
     finally:
-        enter("Tekan Enter untuk kembali ke menu admin...")
+        enter("Tekan Enter untuk kembali ke menu...")
 
 def hapus_penyewa():
     clear_terminal()
@@ -133,7 +162,7 @@ def hapus_penyewa():
             print("Penghapusan dibatalkan.")
 
     finally:
-        enter("Tekan Enter untuk kembali ke menu admin...")
+        enter("Tekan Enter untuk kembali ke menu...")
     
 def buat_id_penyewa():
     nomor = counter["penyewa"]

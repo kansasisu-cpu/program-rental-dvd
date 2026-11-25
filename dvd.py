@@ -1,12 +1,41 @@
 from prettytable import PrettyTable
 import inquirer
 
-from tema import tema_manage_dvd
+from tema import tema_admin
 from data import koleksi_dvd, data_transaksi
 from utils import clear_terminal, enter, input_teks, input_angka, konfirmasi
 from storage import simpan_data
 
+def menu_dvd():
+    clear_terminal()
+    while True:
+        clear_terminal()
+        print("=====================================")
+        print("              MENU DVD")
+        print("=====================================")
+        pertanyaan = [inquirer.List("pilihan", 
+                                    message="Pilih menu", 
+                                    choices=[" Lihat koleksi DVD", " Cari DVD", " Manage DVD", " Kembali"])
+                     ]
 
+        jawaban = inquirer.prompt(pertanyaan, theme=tema_admin())
+
+        if jawaban["pilihan"] == " Lihat koleksi DVD":
+            clear_terminal()
+            print("KOLEKSI DVD 💿")
+            tampilkan_koleksi()
+            print()
+            enter("Tekan Enter untuk kembali ke menu DVD...")
+
+        elif jawaban["pilihan"] == " Cari DVD":
+            cari_dvd()
+
+        elif jawaban["pilihan"] == " Manage DVD":
+            manage_dvd()
+        
+        elif jawaban["pilihan"] == " Kembali":
+            break
+            
 def tampilkan_koleksi():
     if len(koleksi_dvd) == 0:
         print("Belum ada koleksi DVD.")
@@ -42,20 +71,25 @@ def cari_dvd():
             inquirer.List(
                 "pilihan",
                 message="Pilih kategori pencarian",
-                choices=["Cari berdasarkan ID", "Cari berdasarkan Judul", "Cari berdasarkan Genre"]
+                choices=[" Cari berdasarkan ID", " Cari berdasarkan Judul", " Cari berdasarkan Genre", " Kembali"]
             )
         ]
         
-        jawaban = inquirer.prompt(pertanyaan, theme=tema_manage_dvd()) # Sesuaikan tema jika ada
+        jawaban = inquirer.prompt(pertanyaan, theme=tema_admin())
         
-        if jawaban["pilihan"] == "Cari berdasarkan ID":
+        if jawaban["pilihan"] == " Cari berdasarkan ID":
             cari_id()
-            break
-        elif jawaban["pilihan"] == "Cari berdasarkan Judul":
+            clear_terminal()
+            
+        elif jawaban["pilihan"] == " Cari berdasarkan Judul":
             cari_judul()
-            break
-        elif jawaban["pilihan"] == "Cari berdasarkan Genre":
+            clear_terminal()
+            
+        elif jawaban["pilihan"] == " Cari berdasarkan Genre":
             cari_genre()
+            clear_terminal()
+
+        elif jawaban["pilihan"] == " Kembali":
             break
         
 def cari_id():
@@ -148,25 +182,28 @@ def manage_dvd():
         pertanyaan = [
             inquirer.List("pilihan", 
             message="Pilih menu", 
-            choices=[" Tambah DVD", " Ubah data DVD", " Hapus DVD"]
+            choices=[" Tambah DVD", " Ubah data DVD", " Hapus DVD", " Kembali"]
             )
         ]
         
-        jawaban = inquirer.prompt(pertanyaan, theme=tema_manage_dvd())
+        jawaban = inquirer.prompt(pertanyaan, theme=tema_admin())
         
         
         if jawaban["pilihan"]  == " Tambah DVD":
             tambah_dvd()
-            break
-        
+            clear_terminal()
+            
         elif jawaban["pilihan"] == " Ubah data DVD":
             ubah_dvd()
-            break
+            clear_terminal()
         
         elif jawaban["pilihan"] == " Hapus DVD":
             hapus_dvd()
+            clear_terminal()
+        
+        elif jawaban["pilihan"] == " Kembali":
             break
-            
+                    
 def tambah_dvd():
     clear_terminal()
     print("==========================================")
@@ -194,7 +231,7 @@ def tambah_dvd():
         print("\nDVD berhasil ditambahkan!")
 
     finally:
-        enter("Tekan Enter untuk kembali ke menu admin...")
+        enter("Tekan Enter untuk kembali ke menu...")
     
 
 def ubah_dvd():
@@ -203,7 +240,7 @@ def ubah_dvd():
     tampilkan_koleksi()
     
     if len(koleksi_dvd) == 0:
-        enter("Tekan Enter untuk kembali ke menu admin...")
+        enter("Tekan Enter untuk kembali ke menu...")
         return
 
     try:
@@ -230,7 +267,7 @@ def ubah_dvd():
         print("\nData DVD berhasil diperbarui!")
 
     finally:
-        enter("Tekan Enter untuk kembali ke menu admin...")
+        enter("Tekan Enter untuk kembali ke menu...")
 
 def hapus_dvd():
     clear_terminal()
@@ -239,7 +276,7 @@ def hapus_dvd():
     tampilkan_koleksi()
 
     if len(koleksi_dvd) == 0:
-        enter("Tekan Enter untuk kembali ke menu admin...")
+        enter("Tekan Enter untuk kembali ke menu...")
         return
 
     try:
@@ -268,4 +305,4 @@ def hapus_dvd():
             print("Penghapusan dibatalkan.")
 
     finally:
-        enter("Tekan Enter untuk kembali ke menu admin...")
+        enter("Tekan Enter untuk kembali ke menu...")
