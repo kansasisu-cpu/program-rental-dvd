@@ -4,7 +4,7 @@ from tema import tema_admin, tema_user
 from utils import clear_terminal, enter
 from dvd import menu_dvd, tampilkan_koleksi, cari_dvd
 from penyewa import menu_data_penyewa
-from transaksi import menu_transaksi, pengembalian_dvd, tampilkan_transaksi, sewa_dvd, lihat_total_pendapatan
+from transaksi import menu_transaksi, pengembalian_dvd, tampilkan_transaksi, sewa_dvd, total_pendapatan
 
 def menu_admin():
     clear_terminal()
@@ -14,7 +14,7 @@ def menu_admin():
     while True:
         clear_terminal()
         print("=====================================")
-        print("              MENU ADMIN")
+        print("              MENU ADMIN             ")
         print("=====================================")
         pertanyaan = [inquirer.List("pilihan", 
                                     message="Pilih menu", 
@@ -34,7 +34,7 @@ def menu_admin():
             menu_transaksi()
 
         elif jawaban["pilihan"] == " Total pendapatan":
-            lihat_total_pendapatan()
+            total_pendapatan()
 
         elif jawaban["pilihan"] == " Logout":
             clear_terminal()
@@ -46,7 +46,7 @@ def menu_pengguna(username):
     while True:
         clear_terminal()
         print("=============================")
-        print("        MENU PENGGUNA")
+        print("         MENU PENGGUNA       ")
         print("=============================")
         pertanyaan = [inquirer.List("pilihan", 
                                     message="Pilih menu", 

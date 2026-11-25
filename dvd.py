@@ -64,7 +64,7 @@ def cari_dvd():
     while True:
         clear_terminal()
         print("==============================")
-        print("        CARI DVD  🔎      ")
+        print("           CARI DVD  🔎      ")
         print("==============================")
         
         pertanyaan = [
@@ -177,7 +177,7 @@ def manage_dvd():
     clear_terminal()  
     while True:
         print("\n==============================")
-        print("          MANAGE DVD")
+        print("           MANAGE DVD         ")
         print("==============================")
         pertanyaan = [
             inquirer.List("pilihan", 
@@ -207,7 +207,7 @@ def manage_dvd():
 def tambah_dvd():
     clear_terminal()
     print("==========================================")
-    print("               TAMBAH DVD")
+    print("                TAMBAH DVD                ")
     print("==========================================")
 
     try:
