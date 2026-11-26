@@ -100,12 +100,13 @@ def ubah_penyewa():
     try:
         id_penyewa = input_teks("ID penyewa yang ingin diubah: ").upper()
         penyewa = data_penyewa[id_penyewa]
-        nama_baru = input("\nNama baru (Enter jika tidak ingin diubah): ").strip()
-        telepon_baru = input("Nomor telepon baru (Enter jika tidak ingin diubah): ").strip()
+        print("\nNote: Tekan Enter jika tidak ingin diubah.")
+        nama_baru = input("Nama baru: ").strip()
+        telepon_baru = input("Nomor telepon baru (11-13 Digit): ").strip()
         telepon_baru = re.sub(r"[\s-]", "", telepon_baru)
         if telepon_baru != "" and  not re.fullmatch(r"(08[1-9][0-9]{8,10})", telepon_baru):
             raise ValueError("Nomor telepon tidak valid! Contoh: 081234567890")
-        alamat_baru = input("Alamat baru (Enter jika tidak ingin diubah): ").strip()
+        alamat_baru = input("Alamat baru: ").strip()
 
     except KeyError:
         print("\nData penyewa tidak ditemukan!")

@@ -227,7 +227,7 @@ def sewa_dvd(username):
         dvd = koleksi_dvd[id_dvd]
 
         print(f"\nJudul: {dvd['judul']}")
-        print("Harga sewa per DVD per hari: Rp", dvd["harga"])
+        print("Harga sewa 1 DVD/hari: Rp", dvd["harga"])
         print("Stok tersedia:", dvd["stok"])
 
         jumlah = input_angka("\nJumlah DVD yang ingin disewa: ", 1)
@@ -237,7 +237,7 @@ def sewa_dvd(username):
         
         durasi = input_angka("Durasi sewa (hari): ", 1)
         nama = input_teks("Nama lengkap: ")
-        telepon = input_teks("Nomor telepon: ")
+        telepon = input_teks("Nomor telepon (11-13 Digit): ")
         telepon = re.sub(r"[\s-]", "", telepon)
         if not re.fullmatch(r"08[1-9][0-9]{8,10}", telepon):
             raise ValueError("Nomor telepon tidak valid! Contoh: 081234567890")
